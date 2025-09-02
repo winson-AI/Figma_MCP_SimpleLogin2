@@ -33,6 +33,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -40,6 +42,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.painterResource
@@ -312,8 +315,16 @@ fun LoginScreen() {
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.Center
                 ) {
+                    val annotated = buildAnnotatedString  {
+                        withStyle(style = SpanStyle(color = Color.Black)) {
+                            append("Don’t have an account? ")
+                        }
+                        withStyle(style = SpanStyle(color = Color(0xFFE95322))) {
+                            append("Sign Up")
+                        }
+                    }
                     Text(
-                        text = "Don’t have an account? Sign Up",
+                        text = annotated,
                         color = secondaryTextColor,
                         fontSize = 14.sp
                     )
